@@ -50,3 +50,25 @@ export const fetchLectures = async(req, res)=>{
         })
     }
 }
+
+export const getSingleLecture = async (req, res)=>{
+    try {
+        const lecture = await Lecture.findById(req.params.id);
+        const user = await User.findById(req.user._id);
+        
+        if(user.role === 'admin') return res.json({lecture});
+
+        if(!user.subscription.includes(req.params.id)){
+            return res.status(400).json({message:"You can not access this lecture"})
+        }
+
+        res.json({
+            lecture
+        })
+        
+    } catch (error) {
+         res.send({
+            message:error
+        })
+    }
+}
