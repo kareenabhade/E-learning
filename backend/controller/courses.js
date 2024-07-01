@@ -68,7 +68,32 @@ export const getSingleLecture = async (req, res)=>{
         
     } catch (error) {
          res.send({
-            message:error
+            message:error.message
         })
     }
 }
+
+
+export const getMyCourses = async (req, res) => {
+    try {
+
+        if (!req.user.subscription || req.user.subscription.length === 0) {
+            return res.status(200).json({
+                message: "No courses in your subscription",
+                courses: []
+            });
+        }
+
+        const courses = await Courses.find({ _id: { $in: req.user.subscription } });
+        console.log("Courses Found:", courses); // Log the courses found
+
+        res.json({
+            courses
+        });
+    } catch (error) {
+        console.log("Error in getMyCourses:", error.message); // Log the error message
+        res.send({
+            error: error.message
+        });
+    }
+};

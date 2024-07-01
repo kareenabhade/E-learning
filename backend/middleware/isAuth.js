@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { User } from '../models/user.js';
 
 export const isAuth = async(req, res, next)=>{
+
     try {
         const token = req.headers.token;
         if(!token){
@@ -17,7 +18,7 @@ export const isAuth = async(req, res, next)=>{
         
     } catch (error) {
         res.status(400).json({
-            message: error
+            error: error.message
         })
     }
 
