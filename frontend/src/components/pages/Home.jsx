@@ -2,6 +2,7 @@ import { Box, Button, Typography } from '@mui/material'
 import {useNavigate} from 'react-router-dom'
 import React from 'react'
 import Testimonials from './Others/Testimonials';
+import Footer from '../footer/Footer';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -53,8 +54,6 @@ const Home = () => {
       </Button>
 
     </Box>
-
-
     <Box sx={{display:'flex',
               justifyContent:'center',
               alignItems:'center',
@@ -64,6 +63,13 @@ const Home = () => {
     <Typography sx={{fontFamily:'Roboto', fontWeight:'500', fontSize:"30px", color:'#61677A', m:1}} >What our students say</Typography>
     </Box>
     <Testimonials />
+     <Box sx={{
+              bgcolor:'#C7C8CC',
+              p:4,
+              mt:5,            
+    }} >
+          <Footer />
+    </Box>
     </>
   )
 }
