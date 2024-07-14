@@ -16,15 +16,17 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import e from './e.png'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Courses', 'About', 'Account'];
 
 function Header(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
-
+  const navItems = ['Home', 'Courses', 'About', `${props.isAuth?'Account':'Login'}`];
+  
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -83,7 +85,9 @@ function Header(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#758694' }} onClick={() => handleClick(`/${item.toLowerCase()}`)}>
+              
+              <Button key={item} sx={{ color: '#758694' }} 
+              onClick={() => handleClick(`/${item.toLowerCase()}`)}>
                 {item}
               </Button>
             ))}
@@ -111,6 +115,7 @@ function Header(props) {
         <Toolbar />
         {/* content */}
       </Box>
+      <ToastContainer />
     </Box>
   );
 }

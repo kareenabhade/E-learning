@@ -1,11 +1,14 @@
 import { Box, Button, Typography } from '@mui/material'
 import {useNavigate} from 'react-router-dom'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Testimonials from './Others/Testimonials';
 import Footer from '../footer/Footer';
 
+
 const Home = () => {
   const navigate = useNavigate();
+ 
+
   const handleClick = ()=>{
       navigate('/courses');
   }
@@ -44,7 +47,7 @@ const Home = () => {
           ":hover": {
             bgcolor:'black',
             color:'white',
-            border: '3px solid', // Add a border to simulate the outlined effect
+            border: '3px solid', 
             borderColor: 'black',
             borderRadius:'5px'
           }

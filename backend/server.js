@@ -4,11 +4,17 @@ import {connectDB} from './database/db.js'
 import userRoutes from './routes/user.js'
 import coursesRoutes from './routes/courses.js'
 import adminRoutes from './routes/admin.js'
+import cors from 'cors'
+
+const corsOptions = {
+  origin: 'http://localhost:3000', 
+};
 
 dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 5000
 
+app.use(cors(corsOptions ));
 app.use(express.json())
 app.use("/uploads", express.static('uploads'));
 
